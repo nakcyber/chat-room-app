@@ -19,6 +19,8 @@ The project is use ``flutter SDK: Stable 3.3.10``
     ```shell
     flutter doctor
     ```
+    ![image](https://user-images.githubusercontent.com/20948117/210129010-543cb4e5-b0a1-4db9-947d-bc606073963f.png)
+
 
 3. run command on project folder
 
