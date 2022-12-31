@@ -1,6 +1,38 @@
-# chat_room_app
+# Chat room - flutter local notifications
 
-A new Flutter project.
+![image](https://user-images.githubusercontent.com/20948117/210061838-f6d1e2e8-84fc-4bd8-b656-a63c47e36d3d.png)
+
+
+
+## Setup project
+
+The project is use ``flutter SDK: Stable 3.3.10``
+
+[Flutter SDK releases](https://docs.flutter.dev/development/tools/sdk/releases/)
+
+## How to run project
+
+1. Download Flutter SDK flutter SDK: ``flutter SDK: Stable 3.3.10``
+2. Check ready to run project
+
+
+    ```shell
+    flutter doctor
+    ```
+
+3. run command on project folder
+
+    ```shell
+    flutter clean
+    flutter pub get
+    ```
+
+4. run command
+
+    ```shell
+    flutter run
+    ```
+
 
 ## Getting Started
 
