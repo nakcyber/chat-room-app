@@ -58,17 +58,17 @@ Future<void> setupFlutterNotifications() async {
       'high_importance_channel', // id
       'High Importance Notifications', // title
       description:
-      'This channel is used for important notifications.', // description
+          'This channel is used for important notifications.', // description
       importance: Importance.high,
     );
     await flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
-        AndroidFlutterLocalNotificationsPlugin>()
+            AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(channel);
   }
 
   const AndroidInitializationSettings initAndroid =
-  AndroidInitializationSettings('@mipmap/ic_launcher');
+      AndroidInitializationSettings('@mipmap/ic_launcher');
 
   const DarwinInitializationSettings intIOS = DarwinInitializationSettings(
       requestAlertPermission: true,
@@ -76,7 +76,7 @@ Future<void> setupFlutterNotifications() async {
       requestSoundPermission: true);
 
   const InitializationSettings initSetting =
-  InitializationSettings(android: initAndroid, iOS: intIOS);
+      InitializationSettings(android: initAndroid, iOS: intIOS);
   await flutterLocalNotificationsPlugin.initialize(initSetting);
 
   isFlutterLocalNotificationsInitialized = true;
@@ -136,8 +136,6 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         messageList.add(dataFull);
       });
-    }, onDone: () {
-      print("Task Done1");
     }, onError: (error) {
       print("Some Error1");
     });
@@ -152,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
     const DarwinNotificationDetails iosDetail = DarwinNotificationDetails();
 
     const NotificationDetails platformChannel =
-    NotificationDetails(android: androidDetail, iOS: iosDetail);
+        NotificationDetails(android: androidDetail, iOS: iosDetail);
 
     await flutterLocalNotificationsPlugin.show(
         0, 'userID:${data.user}', data.msg, platformChannel);
@@ -229,17 +227,17 @@ class _MyHomePageState extends State<MyHomePage> {
         visualDensity: const VisualDensity(horizontal: 0, vertical: -1),
         title: Row(
           mainAxisAlignment:
-          isFriend ? MainAxisAlignment.start : MainAxisAlignment.end,
+              isFriend ? MainAxisAlignment.start : MainAxisAlignment.end,
           children: [
             isFriend
                 ? hidePhoto
-                ? const SizedBox(width: 50)
-                : Container(
-              margin: const EdgeInsets.only(right: 10),
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(photo),
-              ),
-            )
+                    ? const SizedBox(width: 50)
+                    : Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        child: CircleAvatar(
+                          backgroundImage: NetworkImage(photo),
+                        ),
+                      )
                 : Container(),
             Flexible(
               child: Container(
