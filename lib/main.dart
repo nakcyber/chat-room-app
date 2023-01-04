@@ -122,15 +122,18 @@ class _MyHomePageState extends State<MyHomePage> {
       url = 'ws://10.0.2.2:3000';
     }
 
+    // server ทดสอบ
+    // String url = 'ws://188.166.177.25:3000';
+
     //Setup websocket to StreamController flutter
     _channel = WebSocketChannel.connect(Uri.parse(url));
     streamController = StreamController.broadcast();
     streamController.addStream(_channel.stream);
-
     print("Creating a StreamController and listen event...");
     streamController.stream.listen((data) {
-      print("DataReceived1: " + data);
-      final res = json.decode(data);
+      final d = utf8.decode(data);
+      print("DataReceived1: " + d);
+      final res = json.decode(d);
       final dataFull = DataModel.fromJson(res);
       _showNotification(dataFull);
       setState(() {
