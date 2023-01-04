@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
@@ -117,13 +118,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    String url = 'ws://127.0.0.1:3000';
-    if (Platform.isAndroid) {
-      url = 'ws://10.0.2.2:3000';
-    }
+    // String url = 'ws://127.0.0.1:3000';
+    // if (Platform.isAndroid) {
+    //   url = 'ws://10.0.2.2:3000';
+    // }
 
     // server ทดสอบ
-    // String url = 'ws://188.166.177.25:3000';
+    String url = 'ws://188.166.177.25:3000';
 
     //Setup websocket to StreamController flutter
     _channel = WebSocketChannel.connect(Uri.parse(url));
@@ -131,9 +132,17 @@ class _MyHomePageState extends State<MyHomePage> {
     streamController.addStream(_channel.stream);
     print("Creating a StreamController and listen event...");
     streamController.stream.listen((data) {
-      final d = utf8.decode(data);
-      print("DataReceived1: " + d);
-      final res = json.decode(d);
+
+      dynamic dataDecode;
+      if (data is Uint8List) {
+        // fix issue for node.js using ws 8.11
+        dataDecode = utf8.decode(data);
+      } else {
+        dataDecode = data;
+      }
+      print("DataReceived: " + dataDecode);
+
+      final res = json.decode(dataDecode);
       final dataFull = DataModel.fromJson(res);
       _showNotification(dataFull);
       setState(() {
